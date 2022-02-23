@@ -3,6 +3,7 @@ import { setContext } from '@apollo/client/link/context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { makeVar } from '@apollo/client';
 import { onError } from "@apollo/client/link/error";
+import { offsetLimitPagination } from '@apollo/client/utilities';
 
 
 export const TOKEN = "token"
@@ -24,7 +25,7 @@ export const loggedUserOut = async() => {
   tokenVar(null);
   isUserLoggedInVar(false);
 }
-// loggedUserOut()
+
 const httpLink = createHttpLink({
   // uri: 'http://198b-58-140-221-249.ngrok.io/graphql',
   uri: 'http://localhost:4000/graphql',
@@ -53,8 +54,25 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (networkError) console.log(`[Network error]: ${networkError}`);
 });
 
+// loggedUserOut()
+export const cache = new InMemoryCache({
+  typePolicies:{
+    Query:{
+      fields:{
+        // seeCoffeeShops:offsetLimitPagination(),
+        seeCoffeeShops:{
+          keyArgs:false,
+          merge(existing = [], incoming: []) {
+            return [...existing, ...incoming];
+          },
+        },
+      }
+    }
+  }
+});
+
 export const client = new ApolloClient({
   link: authLink.concat(errorLink).concat(httpLink),
-  cache: new InMemoryCache()
+  cache
 });
 

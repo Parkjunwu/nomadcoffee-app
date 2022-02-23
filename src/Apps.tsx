@@ -13,6 +13,8 @@ import { ApolloProvider, useReactiveVar } from '@apollo/client';
 import { client, isUserLoggedInVar, loggedUserIn, TOKEN, tokenVar } from './client';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import LogIn from './screens/LogIn';
+import { ThemeProvider } from 'styled-components/native';
+import { lightTheme } from './style';
 
 const Tab = createBottomTabNavigator();
 
@@ -48,6 +50,7 @@ export default function Apps() {
   console.log("ready")
   return (
     <ApolloProvider client={client}>
+      <ThemeProvider theme={lightTheme}>
       <NavigationContainer>
         <Tab.Navigator>
           <Tab.Screen name="home" component={Home} />
@@ -55,6 +58,7 @@ export default function Apps() {
           {isLoggedIn ? <Tab.Screen name="profile" component={Profile} /> : <Tab.Screen name="LogIn" component={LogIn} />}
         </Tab.Navigator>
       </NavigationContainer>
+      </ThemeProvider>
     </ApolloProvider>
   );
 }
