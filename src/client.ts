@@ -66,6 +66,12 @@ export const cache = new InMemoryCache({
             return [...existing, ...incoming];
           },
         },
+        searchCoffeeShops:{
+          keyArgs:false,
+          merge(existing = [], incoming: []) {
+            return [...existing, ...incoming];
+          },
+        },
       }
     }
   }

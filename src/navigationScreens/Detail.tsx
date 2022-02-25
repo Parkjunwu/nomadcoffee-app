@@ -5,7 +5,6 @@ import { color } from "../color";
 import { seeCoffeeShops_seeCoffeeShops } from "../__generated__/seeCoffeeShops";
 import { Text } from "react-native";
 import { asyncReverseGeocode } from "../logic/reverseGeolocation";
-import { seeCategory_seeCategory } from "../__generated__/seeCategory";
 
 const Container = styled.View`
   width: 100%;
@@ -97,7 +96,7 @@ const EditPhoto = styled.View`
   font-size: 10px;
 `;
 
-const Post = (props:seeCoffeeShops_seeCoffeeShops|seeCategory_seeCategory) => {
+const Detail = (props:seeCoffeeShops_seeCoffeeShops) => {
   const [photoIndex,setPhotoIndex] = useState(0);
   const totalPhotoNumber = props.photos?.length;
 
@@ -134,12 +133,12 @@ const Post = (props:seeCoffeeShops_seeCoffeeShops|seeCategory_seeCategory) => {
         <CoffeeShopCategoryContainer>
           {props.wholeCategories?.map(category => <CoffeeShopCategory key={category?.id}><Text>#{category?.name}</Text></CoffeeShopCategory>)}
         </CoffeeShopCategoryContainer>
-        {props.user && <UserContainer>
+        <UserContainer>
           <UserAvatar source={props.user?.avatarURL ? {uri:props.user?.avatarURL}:require("../../assets/noImage.png")} />
           <Username><Text>{props?.user?.username}</Text></Username>
-        </UserContainer>}
+        </UserContainer>
       </Footer>
     </Container>
   )
 }
-export default Post;
+export default Detail;

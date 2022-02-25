@@ -2,7 +2,11 @@ import { gql, useQuery } from "@apollo/client"
 import React, { useEffect } from "react"
 import { FlatList, RefreshControl, Text, View } from "react-native"
 import Post from "../components/Post";
+import ToggleHeaderFlatList from "../components/ToggleHeaderFlatList";
 import { seeCoffeeShops, seeCoffeeShopsVariables, seeCoffeeShops_seeCoffeeShops } from "../__generated__/seeCoffeeShops";
+
+
+
 
 const SEE_COFFEE_SHOPS = gql`
   query seeCoffeeShops ($cursor:Int){
@@ -96,7 +100,7 @@ const Home = () => {
   };
 
   return (
-  <FlatList 
+  <ToggleHeaderFlatList 
     data={data?.seeCoffeeShops}
     ListEmptyComponent={<View><Text>No Data</Text></View>}
     renderItem={renderItem}
@@ -109,6 +113,9 @@ const Home = () => {
     }
     onEndReachedThreshold={0.5}
     onEndReached={onEndReached}
+    // ListHeaderComponent={()=><View><Text>Home</Text></View>}
+    // stickyHeaderIndices={[0]}
+    // stickyHeaderHiddenOnScroll={true}
   />)
 }
 export default Home;
