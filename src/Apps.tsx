@@ -18,6 +18,7 @@ import 'react-native-gesture-handler';
 import CommonNavigation from './navigation/CommonNavigation';
 import Upload from './mainScreens/Upload';
 import { SafeAreaView } from 'react-native';
+import 'react-native-gesture-handler';
 
 const Tab = createBottomTabNavigator();
 
