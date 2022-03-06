@@ -27,8 +27,6 @@ export interface seeCategory_seeCategory {
   longitude: string | null;
   photos: (seeCategory_seeCategory_photos | null)[] | null;
   wholeCategories: (seeCategory_seeCategory_wholeCategories | null)[] | null;
-  ////
-  user?:null;
 }
 
 export interface seeCategory {

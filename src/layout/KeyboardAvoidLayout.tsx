@@ -2,11 +2,15 @@ import React from "react";
 import { Keyboard, KeyboardAvoidingView, Platform, TouchableWithoutFeedback } from "react-native";
 import styled from "styled-components/native";
 
+// const TouchableWithoutFeedbackView = styled.TouchableWithoutFeedback`
+//   flex:1;
+// `;
+
 const KeyboardAvoidingContainer = styled.KeyboardAvoidingView`
   flex:1;
   /* background-color: yellow; */
-  justify-content: center;
-  align-items: center;
+  /* justify-content: center;
+  align-items: center; */
 `;
 
 const KeyboardAvoidLayout:React.FC = ({children}) => {

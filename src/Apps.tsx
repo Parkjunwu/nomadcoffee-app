@@ -16,6 +16,8 @@ import { ThemeProvider } from 'styled-components/native';
 import { lightTheme } from './style';
 import 'react-native-gesture-handler';
 import CommonNavigation from './navigation/CommonNavigation';
+import Upload from './mainScreens/Upload';
+import { SafeAreaView } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
@@ -53,7 +55,7 @@ export default function Apps() {
     <ApolloProvider client={client}>
       <ThemeProvider theme={lightTheme}>
         {/* <StatusBar /> */}
-        {/* <SafeAreaView style={{flex:1}}> */}
+        <SafeAreaView style={{flex:1}}>
           <NavigationContainer>
             <Tab.Navigator
               screenOptions={{
@@ -66,10 +68,11 @@ export default function Apps() {
                 {()=>CommonNavigation(Home)}
               </Tab.Screen>
               <Tab.Screen name="search" component={Search} />
+              <Tab.Screen name="upload" component={Upload} />
               {isLoggedIn ? <Tab.Screen name="profile" component={Profile} /> : <Tab.Screen name="LogIn" component={LogIn} />}
             </Tab.Navigator>
           </NavigationContainer>
-        {/* </SafeAreaView> */}
+        </SafeAreaView>
       </ThemeProvider>
     </ApolloProvider>
   );
